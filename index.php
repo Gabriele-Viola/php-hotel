@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
     <title>Hotels</title>
 </head>
 <body>
@@ -53,30 +59,21 @@ $hotels = [
     <div class="container">
         <div class="row">
 
-        <div class='card'>
-        <div class='card-body'>
             <?php
     foreach($hotels as $hotel)
-        
-        foreach($hotel as $key => $value)
-        if($key == "name" ){
-           echo "<h4>$value</h4>";
-        } elseif ($key == "description"){
-           echo "<p>$value</p>";
-        }elseif ($key == "parking"){
-            echo $value ? "<div>Parcheggi disponibile</div>" : "<div></div>";
-        }elseif ($key == "vote"){
-            echo "<div> Valutazione: $value/5</div>";
-        }elseif ($key == "distance_to_center"){
-            echo "<div> Distanza dal centro: $value km</div>";
-        }
-        ?>
 
-    
-    
-    
-    </div>
-    </div>
+echo  '<div class="card">
+        <h4>'. $hotel['name'] . '</h4>
+        <p>' . $hotel['description'] .'</p>
+            <div>
+             <div>' . ($hotel['parking'] ? 'Con pacheggio' : 'Senza Parcheggio')  . '</div>
+              <div> Valutazione: '. $hotel['vote'] .'/5 </div>
+               <div> Distanza dal centro: ' . $hotel['distance_to_center'] .' km</div>
+         </div>
+         </div>';      
+        
+        ?>
+   
         </div>
     </div>
     
