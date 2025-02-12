@@ -1,3 +1,8 @@
+<?php
+$park = $_GET['park'] ?? null;
+$vote = $_GET['vote'] ?? null;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +16,7 @@
         />
     <title>Hotels</title>
 </head>
-<body>
+<body class="w-50 m-auto">
 <?php
 
 $hotels = [
@@ -55,22 +60,45 @@ $hotels = [
 ];
 
 ?>
-    <h1>Hotels</h1>
-    <div class="container">
+<?php
+var_dump($park);
+?>
+    <div class="container ">
+        <h1 class="mb-4">Hotels</h1>
         <div class="row">
-
+            <p>Affina la tua ricerca</p>
+<form action="" method="get" class="form-control mb-4">
+    <label for="" class='form-label'>Disponibilità parcheggio?</label>
+    <select class="form-select mb-2" name="park" id="park">
+        <option > -- </option>
+        <option value=1> Si </option>
+        <option value=0> No </option>
+    </select>
+    <label for="" class='form-label'>Disponibilità parcheggio?</label>
+    <select class="form-select mb-2" name="vote" id="vote">
+        <option value=1> 1 </option>
+        <option value=2> 2 </option>
+        <option value=3> 3 </option>
+        <option value=4> 4 </option>
+        <option value=5> 5 </option>
+    </select>
+    <button class="btn btn-secondary mb-2" type="submit"> Cerca</button>
+</form>
             <?php
     foreach($hotels as $hotel)
+if(($park == $hotel['parking'] || $park == '--') && $vote <=  $hotel['vote']){
 
-echo  '<div class="card">
-        <h4>'. $hotel['name'] . '</h4>
-        <p>' . $hotel['description'] .'</p>
-            <div>
-             <div>' . ($hotel['parking'] ? 'Con pacheggio' : 'Senza Parcheggio')  . '</div>
-              <div> Valutazione: '. $hotel['vote'] .'/5 </div>
-               <div> Distanza dal centro: ' . $hotel['distance_to_center'] .' km</div>
-         </div>
-         </div>';      
+    echo  '<div class="card mb-4 p-2 shadow">
+    <h4>'. $hotel['name'] . '</h4>
+    <p>' . $hotel['description'] .'</p>
+    <div>
+    <div>' . ($hotel['parking'] ? 'Con pacheggio' : 'Senza Parcheggio')  . '</div>
+    <div> Valutazione: '. $hotel['vote'] .'/5 </div>
+    <div> Distanza dal centro: ' . $hotel['distance_to_center'] .' km</div>
+    </div>
+    </div>';      
+    };
+        
         
         ?>
    
